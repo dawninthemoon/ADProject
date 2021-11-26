@@ -53,8 +53,3 @@ class GMPtoCJU:
     def sortMoneyHightToLow(self):
         self.airline = sorted(self.airline, key=lambda x:x[3], reverse = True)
 
-
-
-
-#if __name__ == "__main__":
-GMPtoCJU.sortMoneyLowToHigh()
