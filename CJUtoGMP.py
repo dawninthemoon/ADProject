@@ -49,3 +49,12 @@ class CJUtoGMP:
 
     def sortMoneyHightToLow(self):
         self.airline = sorted(self.airline, key=lambda x:x[3], reverse = True)
+
+    def getAirline(self, index):
+        return self.airline[index][1]
+
+    def getAirlineStartTime(self, index):
+        return self.airline[index][2]
+
+    def getAirlineCost(self, index):
+        return self.airline[index][3]
