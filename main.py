@@ -5,10 +5,10 @@ import time
 driver = webdriver.Chrome('./chromedriver')
 month = 11
 day = 30
-url = f'https://flight.naver.com/flights/domestic/GMP-CJU-202111{day}/CJU-GMP-202111{day+1}?adult=1&isDirect=true&fareType=YC'
+url = f'https://flight.naver.com/flights/domestic/GMP-CJU-2021{month}{day}?adult=1&fareType=YC'
 driver.get(url)
 
-time.sleep(15)
+time.sleep(12)
 
 numOfData = 50
 
@@ -34,16 +34,22 @@ for key in keys:
 
 keys2 = soup.select("b.time")
 
-print(len(keys), len(keys2))
+#print(len(keys), len(keys2))
 for i in range(0, len(keys2), 2):
     key = keys2[i]
     airline[i // 2].append(key.text)
 
 keys3 = soup.select("i.domestic_num__2roTW")
-print(len(keys3))
+keys3_garbage = soup.select("i.domestic_type__30RSq")
+#print(len(keys3))
+#print(keys3_garbage)
+index = 0;
+for i in range(len(keys3)):
+    if(keys3_garbage[i].text == "일반석" or keys3_garbage[i].text == "특가석" or keys3_garbage[i].text == "할인석" or keys3_garbage[i].text == "비즈니스석"):
+        key = keys3[i]
+        money = key.text.replace(',', '')
+        airline[index].append(int(money))
+        index += 1
 
-for i in range(0, len(keys3), 2):
-    key = keys3[i]
-    airline[i // 2].append(key.text)
 print(airline)
 
