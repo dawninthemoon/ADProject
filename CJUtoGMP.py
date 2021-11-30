@@ -50,6 +50,9 @@ class CJUtoGMP:
     def sortMoneyHightToLow(self):
         self.airline = sorted(self.airline, key=lambda x:x[3], reverse = True)
 
+    def getSize(self):
+        return len(self.airline)
+
     def getAirline(self, index):
         return self.airline[index][1]
 

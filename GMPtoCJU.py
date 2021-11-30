@@ -9,7 +9,7 @@ class GMPtoCJU:
         url = f'https://flight.naver.com/flights/domestic/GMP-CJU-2021{month}{day}?adult=1&fareType=YC'
         driver.get(url)
 
-        time.sleep(15)
+        time.sleep(5)
 
         numOfDate = 50
 
@@ -52,6 +52,9 @@ class GMPtoCJU:
 
     def sortMoneyHightToLow(self):
         self.airline = sorted(self.airline, key=lambda x:x[3], reverse = True)
+
+    def getSize(self):
+        return len(self.airline)
 
     def getAirline(self, index):
         return self.airline[index][1]
