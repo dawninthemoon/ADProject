@@ -113,7 +113,7 @@ class MainWindow(QWidget):
             if airlineOption == airlineName or airlineOption == '전부 표시':
                 text += airlineName + '\n'
                 text += airlineObj.getAirlineStartTime(i) + ' 출발\n'
-                text += airlineObj.getAirlineCost(i) + '원\n\n'
+                text += str(airlineObj.getAirlineCost(i)) + '원\n\n'
 
         self.resultTextEdit.setText(text)
 

@@ -41,7 +41,8 @@ class GMPtoCJU:
         for i in range(len(self.keys3)):
             if (keys3_garbage[i].text == "일반석" or keys3_garbage[i].text == "특가석" or keys3_garbage[i].text == "할인석" or keys3_garbage[i].text == "비즈니스석" or keys3_garbage[i].text == "특가석-환불불가"):
                 key = self.keys3[i]
-                self.airline[index].append(key.text)
+                money = key.text.replace(',', '')
+                self.airline[index].append(int(money))
                 index += 1
 
     def sortStartTime(self):
@@ -49,6 +50,7 @@ class GMPtoCJU:
 
     def sortMoneyLowToHigh(self):
         self.airline = sorted(self.airline, key=lambda x:x[3])
+        print(self.airline)
 
     def sortMoneyHightToLow(self):
         self.airline = sorted(self.airline, key=lambda x:x[3], reverse = True)

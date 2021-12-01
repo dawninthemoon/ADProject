@@ -37,8 +37,9 @@ class CJUtoGMP:
         index = 0;
         for i in range(len(keys3)):
             if (keys3_garbage[i].text == "일반석" or keys3_garbage[i].text == "특가석" or keys3_garbage[i].text == "할인석" or keys3_garbage[i].text == "비즈니스석"):
-                key = keys3[i]
-                self.airline[index].append(key.text)
+                key = self.keys3[i]
+                money = key.text.replace(',', '')
+                self.airline[index].append(int(money))
                 index += 1
 
     def sortStartTime(self):
