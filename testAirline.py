@@ -1,4 +1,4 @@
-import unittest
+import unittest ()
 
 from GMPtoCJU import GMPtoCJU
 from CJUtoGMP import CJUtoGMP
@@ -6,9 +6,9 @@ import mainWindow as mw
 
 class TestAirline(unittest.TestCase):
     def setUp(self):
-        self.c1 = GMPtoCJU(12, 12)
+        self.g1 = GMPtoCJU(12, 12)
         self.c1 = CJUtoGMP(12, 12)
-        self.Gairline = self.c1.airline
+        self.Gairline = self.g1.airline
         self.Cairline = self.c1.airline
 
     def tearDown(self):
@@ -16,9 +16,9 @@ class TestAirline(unittest.TestCase):
 
 
     def test_GMPtoCJU_keys_len(self):
-        keys_len = len(self.c1.keys)
-        keys2_len = len(self.c1.keys2)//2
-        keys3_len = len(self.c1.keys3)
+        keys_len = len(self.g1.keys)
+        keys2_len = len(self.g1.keys2)//2
+        keys3_len = len(self.g1.keys3)
         self.assertEqual(keys_len, keys2_len)
         #self.assertEqual(keys2_len, keys3_len)
 
@@ -30,9 +30,9 @@ class TestAirline(unittest.TestCase):
         #self.assertEqual(keys2_len, keys3_len)
 
     def test_GMPtoCJU_sort_money_low_to_high(self):
-        self.c1.sortMoneyLowToHigh()
-        for i in range(len(self.c1.keys) - 1):
-            self.assertTrue(self.c1.getAirlineCost(i) <= self.c1.getAirlineCost(i+1))
+        self.g1.sortMoneyLowToHigh()
+        for i in range(len(self.g1.keys) - 1):
+            self.assertTrue(self.g1.getAirlineCost(i) <= self.g1.getAirlineCost(i+1))
 
     def test_CJUtoGMP_sort_money_low_to_high(self):
         self.c1.sortMoneyLowToHigh()
@@ -42,10 +42,10 @@ class TestAirline(unittest.TestCase):
             self.assertTrue(self.c1.getAirlineCost(i) <= self.c1.getAirlineCost(i+1))
             
     def test_GMPtoCJU_sort_money_high_to_low(self):
-        self.c1.sortMoneyHightToLow()
+        self.g1.sortMoneyHightToLow()
         #print(self.Gairline)
-        for i in range(len(self.c1.keys) - 1):
-            self.assertTrue(self.c1.getAirlineCost(i) >= self.c1.getAirlineCost(i+1))
+        for i in range(len(self.g1.keys) - 1):
+            self.assertTrue(self.g1.getAirlineCost(i) >= self.g1.getAirlineCost(i+1))
 
     def test_CJUtoGMP_sort_money_high_to_low(self):
         self.c1.sortMoneyHightToLow()
@@ -53,19 +53,19 @@ class TestAirline(unittest.TestCase):
             self.assertTrue(self.c1.getAirlineCost(i) >= self.c1.getAirlineCost(i+1))
 
     def test_GMPtoCJU_sort_start_time(self):
-        self.c1.sortStartTime()
+        self.g1.sortStartTime()
         for i in range(len(self.c1.keys) - 1):
-            t1 = self.c1.getAirlineStartTime(i)
+            t1 = self.g1.getAirlineStartTime(i)
             h1, m1 = map(int, t1.split(':'))
             minute_time1 = m1 + 60 * h1
 
-            t2 = self.c1.getAirlineStartTime(i+1)
+            t2 = self.g1.getAirlineStartTime(i+1)
             h2, m2 = map(int, t2.split(':'))
             minute_time2 = m2 + 60 * h2
 
             self.assertTrue(minute_time1 <= minute_time2)
 
-    def test_GMPtoCJU_sort_start_time(self):
+    def test_CJUtoGMP_sort_start_time(self):
         self.c1.sortStartTime()
         for i in range(len(self.c1.keys) - 1):
             t1 = self.c1.getAirlineStartTime(i)
