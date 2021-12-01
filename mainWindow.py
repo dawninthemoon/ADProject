@@ -6,7 +6,7 @@ import datetime
 
 def isDateValid(month, day):
     ret = True
-    days = [31, 28, 31, 28, 31, 30, 31, 31, 30, 31, 30, 31]
+    days = [0, 31, 28, 31, 28, 31, 30, 31, 31, 30, 31, 30, 31]
 
     if (month == '') or (month > 12) or (month < 1):
         ret = False
