@@ -1,4 +1,4 @@
-import unittest ()
+import unittest
 
 from GMPtoCJU import GMPtoCJU
 from CJUtoGMP import CJUtoGMP
