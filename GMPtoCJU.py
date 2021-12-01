@@ -50,7 +50,7 @@ class GMPtoCJU:
 
     def sortMoneyLowToHigh(self):
         self.airline = sorted(self.airline, key=lambda x:x[3])
-        print(self.airline)
+        #print(self.airline)
 
     def sortMoneyHightToLow(self):
         self.airline = sorted(self.airline, key=lambda x:x[3], reverse = True)
