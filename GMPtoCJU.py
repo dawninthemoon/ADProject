@@ -39,7 +39,7 @@ class GMPtoCJU:
         # print(keys3_garbage)
         index = 0;
         for i in range(len(self.keys3)):
-            if (keys3_garbage[i].text == "일반석" or keys3_garbage[i].text == "특가석" or keys3_garbage[i].text == "할인석" or keys3_garbage[i].text == "비즈니스석"):
+            if (keys3_garbage[i].text == "일반석" or keys3_garbage[i].text == "특가석" or keys3_garbage[i].text == "할인석" or keys3_garbage[i].text == "비즈니스석" or keys3_garbage[i].text == "특가석-환불불가"):
                 key = self.keys3[i]
                 self.airline[index].append(key.text)
                 index += 1
