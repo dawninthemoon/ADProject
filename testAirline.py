@@ -6,8 +6,8 @@ import mainWindow as mw
 
 class TestAirline(unittest.TestCase):
     def setUp(self):
-        self.g1 = GMPtoCJU(2021, 12, 12)
-        self.c1 = CJUtoGMP(2021, 12, 12)
+        self.g1 = GMPtoCJU(2021, 12, 12, "GMP-CJU")
+        self.c1 = CJUtoGMP(2021, 12, 12, "CJU-GMP")
         self.Gairline = self.g1.airline
         self.Cairline = self.c1.airline
 

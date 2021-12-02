@@ -1,5 +1,4 @@
 from GMPtoCJU import GMPtoCJU
-from CJUtoGMP import CJUtoGMP
 from mainWindow import MainWindow
 import sys
 from PyQt5.QtWidgets import QApplication
@@ -16,9 +15,9 @@ def onSearchButtonClicked(day, month, direction, sortUnit):
     day = format(day, '02')
     
     if direction == '김포 -> 제주':
-        airlineObject = GMPtoCJU(year, month, day)
+        airlineObject = GMPtoCJU(year, month, day, "GMP-CJU")
     else:
-        airlineObject = CJUtoGMP(year, month, day)
+        airlineObject = GMPtoCJU(year, month, day, "CJU-GMP")
 
     if sortUnit == '출발 시간순':
         airlineObject.sortStartTime()
