@@ -99,6 +99,7 @@ class MainWindow(QWidget):
         self.layoutBase.addWidget(resultTextLabel)
 
         self.resultTextEdit = QTextEdit(self)
+        self.resultTextEdit.setReadOnly(True)
         self.layoutBase.addWidget(self.resultTextEdit)
 
     def setSearchButtonCallback(self, callback):
@@ -115,8 +116,11 @@ class MainWindow(QWidget):
 
             if airlineOption == airlineName or airlineOption == '전부 표시':
                 text += airlineName + '\n'
-                text += airlineObj.getAirlineStartTime(i) + ' 출발\n'
-                text += airlineObj.getAirlineCost(i) + '원\n\n'
+                try:
+                    text += airlineObj.getAirlineStartTime(i) + ' 출발\n'
+                    text += airlineObj.getAirlineCost(i) + '원\n\n'
+                except:
+                    pass
 
         self.resultTextEdit.setText(text)
 
