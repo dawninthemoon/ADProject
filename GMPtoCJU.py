@@ -4,9 +4,9 @@ import time
 
 class GMPtoCJU:
 
-    def __init__(self, month, day):
+    def __init__(self, year, month, day):
         driver = webdriver.Chrome('./chromedriver')
-        url = f'https://flight.naver.com/flights/domestic/GMP-CJU-2021{month}{day}?adult=1&fareType=YC'
+        url = f'https://flight.naver.com/flights/domestic/GMP-CJU-{year}{month}{day}?adult=1&fareType=YC'
         driver.get(url)
 
         time.sleep(5)

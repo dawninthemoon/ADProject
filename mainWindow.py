@@ -2,7 +2,8 @@ from PyQt5.QtWidgets import (QWidget, QPushButton,
     QHBoxLayout, QVBoxLayout, QApplication, QLabel,
     QComboBox, QTextEdit, QLineEdit)
 from PyQt5.QtCore import Qt
-import datetime
+from PyQt5 import QtTest
+import time
 
 def isDateValid(month, day):
     ret = True
@@ -10,7 +11,7 @@ def isDateValid(month, day):
 
     if (month == '') or (month > 12) or (month < 1):
         ret = False
-    elif (day == '') or (day > days[month]) or (day < 1):
+    elif (day == '') or (day > days[month - 1]) or (day < 1):
         ret = False
     return ret
 
@@ -106,6 +107,8 @@ class MainWindow(QWidget):
     def showAirline(self, airlineObj):
         size = airlineObj.getSize()
         text = ''
+        if size == 0:
+            text = '항공권이 존재하지 않습니다.'
         airlineOption = self.companyComboBox.currentText()
         for i in range(size):
             airlineName = airlineObj.getAirline(i)
@@ -121,6 +124,8 @@ class MainWindow(QWidget):
         day = ''
         month = ''
         self.resultTextEdit.setText('항공권을 불러오는 중입니다...')
+        QtTest.QTest.qWait(2)
+        
         try:
             day = int(self.dayInputField.text())
             month = int(self.monthInputField.text())
