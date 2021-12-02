@@ -11,7 +11,7 @@ def isDateValid(month, day):
 
     if (month == '') or (month > 12) or (month < 1):
         ret = False
-    elif (day == '') or (day > days[month - 1]) or (day < 1):
+    elif (day == '') or (day > days[month]) or (day < 1):
         ret = False
     return ret
 
