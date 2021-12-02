@@ -4,9 +4,9 @@ import time
 
 class CJUtoGMP:
 
-    def __init__(self, month, day):
+    def __init__(self, year, month, day):
         driver = webdriver.Chrome('./chromedriver')
-        url = f'https://flight.naver.com/flights/domestic/CJU-GMP-2021{month}{day}?adult=1&fareType=YC'
+        url = f'https://flight.naver.com/flights/domestic/CJU-GMP-{year}{month}{day}?adult=1&fareType=YC'
         driver.get(url)
 
         time.sleep(15)
@@ -34,9 +34,9 @@ class CJUtoGMP:
         self.keys3 = soup.select("i.domestic_num__2roTW")
         keys3_garbage = soup.select("i.domestic_type__30RSq")
 
-        index = 0;
+        index = 0
         for i in range(len(self.keys3)):
-            if (keys3_garbage[i].text == "일반석" or keys3_garbage[i].text == "특가석" or keys3_garbage[i].text == "할인석" or keys3_garbage[i].text == "비즈니스석"):
+            if (keys3_garbage[i].text == "일반석" or keys3_garbage[i].text == "특가석" or keys3_garbage[i].text == "할인석" or keys3_garbage[i].text == "비즈니스석" or keys3_garbage[i].text == "특가석-환불불가" or keys3_garbage[i].text == "특가석-수하물유료"):
                 key = self.keys3[i]
                 money = key.text.replace(',', '')
                 self.airline[index].append(int(money))

@@ -117,7 +117,11 @@ class MainWindow(QWidget):
                 isExist = True
                 text += airlineName + '\n'
                 text += airlineObj.getAirlineStartTime(i) + ' 출발\n'
-                text += str(airlineObj.getAirlineCost(i)) + '원\n\n'
+                try:
+                    text += str(airlineObj.getAirlineCost(i)) + '원\n\n'
+                except:
+                    print(i)
+                    print(size)
 
         if not isExist:
             text = '항공권이 존재하지 않습니다.'
