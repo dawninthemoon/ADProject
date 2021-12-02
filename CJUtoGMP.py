@@ -4,9 +4,9 @@ import time
 
 class CJUtoGMP:
 
-    def __init__(self, year, month, day):
+    def __init__(self, month, day):
         driver = webdriver.Chrome('./chromedriver')
-        url = f'https://flight.naver.com/flights/domestic/CJU-GMP-{year}{month}{day}?adult=1&fareType=YC'
+        url = f'https://flight.naver.com/flights/domestic/CJU-GMP-2021{month}{day}?adult=1&fareType=YC'
         driver.get(url)
 
         time.sleep(15)
@@ -18,27 +18,28 @@ class CJUtoGMP:
             time.sleep(0.1)
 
         soup = BeautifulSoup(driver.page_source, 'html.parser')
-        keys = soup.select("b.name")
+        self.keys = soup.select("b.name")
         index = 0
         self.airline = []
-        for key in keys:
+        for key in self.keys:
             index += 1
             self.airline.append([index, key.text])
 
-        keys2 = soup.select("b.time")
+        self.keys2 = soup.select("b.time")
 
-        for i in range(0, len(keys2), 2):
-            key = keys2[i]
+        for i in range(0, len(self.keys2), 2):
+            key = self.keys2[i]
             self.airline[i // 2].append(key.text)
 
-        keys3 = soup.select("i.domestic_num__2roTW")
+        self.keys3 = soup.select("i.domestic_num__2roTW")
         keys3_garbage = soup.select("i.domestic_type__30RSq")
 
         index = 0;
-        for i in range(len(keys3)):
-            if (keys3_garbage[i].text == "일반석" or keys3_garbage[i].text == "특가석-환불불가" or keys3_garbage[i].text == "특가석" or keys3_garbage[i].text == "할인석" or keys3_garbage[i].text == "비즈니스석"):
-                key = keys3[i]
-                self.airline[index].append(int(key.text.replace(',', '')))
+        for i in range(len(self.keys3)):
+            if (keys3_garbage[i].text == "일반석" or keys3_garbage[i].text == "특가석" or keys3_garbage[i].text == "할인석" or keys3_garbage[i].text == "비즈니스석"):
+                key = self.keys3[i]
+                money = key.text.replace(',', '')
+                self.airline[index].append(int(money))
                 index += 1
 
     def sortStartTime(self):
