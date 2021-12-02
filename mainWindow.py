@@ -108,20 +108,19 @@ class MainWindow(QWidget):
     def showAirline(self, airlineObj):
         size = airlineObj.getSize()
         text = ''
-        if size == 0:
-            text = '항공권이 존재하지 않습니다.'
+        isExist = False
         airlineOption = self.companyComboBox.currentText()
         for i in range(size):
             airlineName = airlineObj.getAirline(i)
 
             if airlineOption == airlineName or airlineOption == '전부 표시':
+                isExist = True
                 text += airlineName + '\n'
-                try:
-                    text += airlineObj.getAirlineStartTime(i) + ' 출발\n'
-                    text += airlineObj.getAirlineCost(i) + '원\n\n'
-                except:
-                    pass
+                text += airlineObj.getAirlineStartTime(i) + ' 출발\n'
+                text += str(airlineObj.getAirlineCost(i)) + '원\n\n'
 
+        if not isExist:
+            text = '항공권이 존재하지 않습니다.'
         self.resultTextEdit.setText(text)
 
     def onSearchButtonClicked(self):
